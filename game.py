@@ -14,7 +14,7 @@ class Game :
         
         pygame.init()
         pygame.display.set_caption(Game.name)
-        Game.screen = pygame.display.set_mode(Game.size)
+        Game.screen = pygame.display.set_mode(Game.size,pygame.FULLSCREEN)
         Game.clock = pygame.time.Clock()
         pygame.mixer.music.load('sound/bgm.mp3')
         # pygame.mixer.music.play(-1)

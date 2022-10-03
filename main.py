@@ -15,7 +15,6 @@ if __name__ == "__main__":
         scene.render()
                 
         for texture in Game.images:
-            print(texture.filename)
             Game.screen.blit(texture.image, (0, 0))
         
         pygame.display.update()
@@ -24,3 +23,5 @@ if __name__ == "__main__":
         Game.images.clear()
 
     Game.close()
+
+   

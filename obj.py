@@ -1,14 +1,18 @@
 from game import *
+from button import Button
 
 class Obj():
     
     def __init__(self, name="No name"):
         self.name = name
-        self.x, self.y = 0, 0
+        self.pos    = (0, 0)
+        self.center = (0, 0)
         self.texture = Texture()
         
     def set_texture(self, filename):
         self.texture = Texture(filename)
         
-    def render(self):
+    def render(self, margin = [0,0]):
+        self.texture.x = self.pos[0] + margin[0] - self.center[0]
+        self.texture.y = self.pos[1] + margin[1] - self.center[1]
         Game.render(self.texture)

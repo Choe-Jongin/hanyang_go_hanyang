@@ -31,7 +31,6 @@ class Game_Scene(Scene):
         self.evaluation     = 50
         
         self.student        = 1000
-        self.budget         = 10000
         self.cost           = 0
         self.tuition_fee    = 400
         
@@ -51,8 +50,8 @@ class Game_Scene(Scene):
         #building registration
         self.buildings = []
         self.add_buildings(Camhub_Building())
-        self.add_buildings(Techno_Building())
         self.add_buildings(Main_Building())
+        self.add_buildings(Techno_Building())
         self.add_buildings(Moon_Building())
         self.add_buildings(Design_Building())
         self.add_buildings(Phydeu_Building())
@@ -81,8 +80,8 @@ class Game_Scene(Scene):
         self.student += self.get_student()
         
         #calculate tuition_fee and the budget
-        Game.income_prv = self.get_budget(self.student)
-        self.budget += self.get_budget(self.student)
+        Game.income_prv = self.get_budget(self.student*Game.dormy_bonus)
+        Game.budget += self.get_budget(self.student*Game.dormy_bonus)
         
         if self.turn%5 == 0 and self.turn <= 30:
             self.buildings[1].satisfaction += 1
@@ -93,9 +92,9 @@ class Game_Scene(Scene):
     #만족도, 연구기술력, 평판의 합을 구합니다.
     def sum_values(self):   
         self.satisfaction   = 0
-        self.research       = 0
+        self.research       = self.student//300
         self.evaluation     = 0
-        self.cost           = 0
+        self.cost           = self.turn*1000
         self.total_lv       = 0
         for building in self.buildings:
             self.satisfaction   += building.get_satisfaction()
@@ -106,7 +105,7 @@ class Game_Scene(Scene):
     
     #증가(혹은 감소)할 학생 숫자를 구합니다.
     def get_student(self):
-        student = ((self.satisfaction + self.evaluation)/70)*200 - 150
+        student = ((self.satisfaction + self.evaluation)/90)*200 - (110 + 4*self.turn)
         if self.student + student <= 0:
             Game.estimate_student = -self.student
         else :
@@ -118,7 +117,7 @@ class Game_Scene(Scene):
         sum_univ_value = (self.satisfaction+self.research+self.evaluation)
         self.tuition_fee = (sum_univ_value/self.total_lv)
         Game.income_fee =       student * self.tuition_fee
-        Game.income_res = self.research * self.evaluation * 20
+        Game.income_res = self.research * self.evaluation * 15
         Game.estimate_income = Game.income_fee + Game.income_res - self.cost
         return Game.estimate_income
 
@@ -127,7 +126,7 @@ class Game_Scene(Scene):
         
         #상태 갱신
         self.sum_values()
-        self.get_budget(self.get_student() + self.student)
+        self.get_budget((self.get_student() + self.student)*Game.dormy_bonus)
         
         #다른 창이 안 켜져있을 때만 체크
         if self.opened_building == None :
@@ -162,11 +161,11 @@ class Game_Scene(Scene):
         self.topbar.update(self.satisfaction, 
                         self.research, 
                         self.evaluation, 
-                        self.student, 
-                        self.budget, 
+                        self.student*Game.dormy_bonus, 
+                        Game.budget,
                         self.turn)
         
-        if self.student == 0 or self.budget < 0 :
+        if self.student == 0 or Game.budget < 0 :
             print('Fail')
         
         

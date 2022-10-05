@@ -25,6 +25,8 @@ class Building_info(Obj):
         #text
         self.name = Texture_font('nanumgothic', 40, [0,0,0], True)
         self.margin_name = [280,10]
+        self.dest = Texture_font('nanumgothic', 15, [0,0,0], True)
+        self.margin_dest= [250,70]
         self.lv = Texture_font('nanumgothic', 15, [0,0,0], True)
         self.margin_lv = [20,210]
         
@@ -51,6 +53,7 @@ class Building_info(Obj):
             
         #content 같이 이동
         self.name.set_image(self.building.name.center(20, ' '),     self.pos, self.center, self.margin_name)
+        self.dest.set_image(self.building.dest.center(70, ' '),     self.pos, self.center, self.margin_dest)
         self.lv.set_image(self.building.get_level().center(35, ' '),self.pos, self.center, self.margin_lv)
         self.thumbnail.pos = [self.pos[0] + 20, self.pos[1] + 20]
         self.close.pos[0] = self.pos[0]+860
@@ -71,6 +74,7 @@ class Building_info(Obj):
         self.thumbnail.render()
         self.close.render()
         Game.render(self.name)
+        Game.render(self.dest)
         Game.render(self.lv)
         Game.render(self.font_satisfaction)
         Game.render(self.font_research)

@@ -16,7 +16,7 @@ class Game :
         
         #for in game
         Game.income_prv = 0
-        Game.budget = 0
+        Game.budget = 10000
         Game.dormy_bonus = 1
         
         #pygame settings

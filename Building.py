@@ -10,7 +10,8 @@ class Building(Obj):
         self.info_textures = []
         self.set_effect(0,0,0)
         self.cost = 0
-        self.levelup_cost = [0] 
+        self.levelup_cost = [0]
+        self.dest = ''
         
         #info window
         self.info = Building_info()
@@ -22,6 +23,9 @@ class Building(Obj):
         self.satisfaction = satisfaction
         self.research = research
         self.evaluation = evaluation
+        
+    def set_lveffect(self):
+        self.set_effect(self.effect[self.level][0], self.effect[self.level][1], self.effect[self.level][2])
         
     def show_info(self):
         self.info.visible = True

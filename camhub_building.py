@@ -6,10 +6,10 @@ class Camhub_Building(Building):
         self.set_texture('images/buildings/camhub.png')
         self.pos = (330, 307)
         self.center = (110, 232)
-        self.rect_pos = (280, 140)
-        
         self.set_effect(10,10,10)
-    
+        
+        #특수 충돌 범위
+        self.rect_pos = (280, 140)
         self.button = Rect_Button( self.rect_pos, [130,130] )
         
         self.levelup_cost = [300000] 
@@ -23,6 +23,9 @@ class Camhub_Building(Building):
         self.levelup_font = Texture_font('nanumgothic', 30, [0,0,0])
         self.caption = Texture_font('nanumgothic', 20, [0,0,0])
         
+        #한 줄 소개
+        self.dest = '정부의 캠퍼스혁신파크 선도사업에 선정되어, 카카오데이터 센터등 6900억원이 투입됩다냥!!'
+        
     def level_up(self):
         if Game.budget < self.levelup_cost[self.level] :
             return 'exceed budget'
@@ -30,10 +33,12 @@ class Camhub_Building(Building):
             return 'max level'
         Game.budget -= self.get_levelup_cost()
         self.set_effect(10,10,10)
+        self.level += 1
         return 0
         
     def update(self): 
         super().update()
+        self.info.update()
         
         if self.level == 0 :
             self.levelup_btn.pos[0] = self.info.pos[0] + 700

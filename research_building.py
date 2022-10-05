@@ -24,17 +24,21 @@ class Research_Building(Building):
         self.levelup_font = Texture_font('nanumgothic', 30, [0,0,0])
         self.caption = Texture_font('nanumgothic', 20, [0,0,0])
         
+        #한 줄 소개
+        self.dest = '각종 연구소, 실험단지가 입주해있다냥'
+        
     def level_up(self):
         if Game.budget < self.levelup_cost[self.level] :
             return 'exceed budget'
         if self.level == self.max_level:
             return 'max level'
         Game.budget -= self.get_levelup_cost()
-        self.set_effect(10,10,10)
+        self.level += 1
         return 0
         
     def update(self): 
         super().update()
+        self.info.update()
         
         if self.level == 0 :
             self.levelup_btn.pos[0] = self.info.pos[0] + 700

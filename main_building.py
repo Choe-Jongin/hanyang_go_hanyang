@@ -47,8 +47,12 @@ class Main_Building(Building):
                         (self.pos[0] - 49, self.pos[1] - 100),
                         (self.pos[0] + 68, self.pos[1] - 37))
         
+        #한 줄 소개
+        self.dest = '에리카 캠퍼스의 본관이다냥. 포토 스팟으로 좋으니 구경오라냥!!'
+        
     def update(self): 
         super().update()
+        self.info.update()
         
         self.income_info.set_image('예산 출처:[등록금 %d냥, 연구실적 %d냥], 지난학기 수입:%d냥'%
                             (Game.income_fee, Game.income_res, Game.income_prv),

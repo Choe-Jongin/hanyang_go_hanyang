@@ -14,14 +14,14 @@ if __name__ == "__main__":
                 
             if event.type == pygame.MOUSEMOTION :
                 Game.mouse_motion(pygame.mouse.get_pos())
-                print(Game.m)
+                # print(Game.m)
                 
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                print('down', end=' ')
+                # print('down', end=' ')
                 Game.mouse_down()
             
             if event.type == pygame.MOUSEBUTTONUP :
-                print('up')
+                # print('up')
                 Game.mouse_up()
         
         # Game.screen.fill(Game.WHITE)

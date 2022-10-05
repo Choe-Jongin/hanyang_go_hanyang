@@ -5,7 +5,8 @@ if __name__ == "__main__":
     scene = Game_Scene()
     while Game.run:
         
-        Game.mouse_clear()
+        # Game.mouse_clear()
+        Game.mouse = 'none'
         
         for event in pygame.event.get():    
             if event.type == pygame.QUIT:
@@ -13,7 +14,7 @@ if __name__ == "__main__":
                 
             if event.type == pygame.MOUSEMOTION :
                 Game.mouse_motion(pygame.mouse.get_pos())
-                # print(Game.m)
+                print(Game.m)
                 
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 print('down', end=' ')
@@ -24,7 +25,6 @@ if __name__ == "__main__":
                 Game.mouse_up()
         
         # Game.screen.fill(Game.WHITE)
-        
         scene.update()
         scene.render()
                 

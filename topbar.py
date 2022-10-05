@@ -16,7 +16,7 @@ class Topbar(Obj):
         self.texture_turn.set_image(self.turn, self.pos, self.center, self.margin_turn)
         
         
-        self.values = '만족도 %d      연구기술력 %d      평판 %d      학생수 %d명      예산 %d원'%(satisfaction, research, evaluation, student, budget)
+        self.values = '만족도 %d      연구기술력 %d      평판 %d      학생수 %d명      예산 %d냥'%(satisfaction, research, evaluation, student, budget)
         self.values = '%150s'%(self.values)
         self.texture_value.set_image(self.values, self.pos, self.center, (10,10))
         

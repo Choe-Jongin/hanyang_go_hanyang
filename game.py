@@ -14,19 +14,29 @@ class Game :
         Game.m = (0, 0)
         Game.mouse = 'none'
         
+        #for in game
+        Game.income_prv = 0
+        Game.budget = 0
+        Game.dormy_bonus = 1
+        
         #pygame settings
         pygame.init()
         pygame.display.set_caption(Game.name)
         Game.screen = pygame.display.set_mode(Game.size)
         Game.clock = pygame.time.Clock()
-        pygame.mixer.music.load('sound/bgm.mp3')
-        # pygame.mixer.music.play(-1)
-        
-
-    @staticmethod
+        Game.bgm = pygame.mixer.Sound('sound/bgm.mp3')
+        Game.bgm.play(-1)
+        Game.error = pygame.mixer.Sound('sound/error.mp3')
     
+    @staticmethod
+    def render(texture):
+        Game.images.append(texture)
+        
+        
+    @staticmethod
     def mouse_motion(m):
         Game.m = m
+        
     @staticmethod
     def mouse_clear():
         if Game.mouse == 'down' :
@@ -35,6 +45,7 @@ class Game :
             Game.mouse = 'none'
     def mouse_down():
         Game.mouse = 'down'
+        
     @staticmethod
     def mouse_up():
         Game.mouse = 'click'
@@ -57,8 +68,4 @@ class Game :
         for pos in positions :
             pos_add(re, pos)
         return re
-    
-        
-    @staticmethod
-    def render(texture):
-        Game.images.append(texture)
+            

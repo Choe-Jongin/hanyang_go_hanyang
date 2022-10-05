@@ -1,8 +1,10 @@
 from game import *
 
 class Button:
+    
     def __init__(self, pos):
         self.pos = pos
+        Button.sound = pygame.mixer.Sound('sound/click.mp3')
     
     def vector(self,p1, p2):
        return [(p2[0] - p1[0]), (p2[1] - p1[1])]
@@ -14,7 +16,10 @@ class Button:
         pass
     
     def isClicked(self):
-        return Game.mouse == 'click' and self.mouse_in(Game.m)
+        if Game.mouse == 'click' and self.mouse_in(Game.m) :
+            Button.sound.play(0)
+            return True
+        return False
     
 class Rect_Button(Button):
     def __init__(self, pos, size):

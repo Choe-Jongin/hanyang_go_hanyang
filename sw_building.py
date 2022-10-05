@@ -2,7 +2,7 @@ from building import *
 
 class Sw_Building(Building):
     def __init__(self):
-        super().__init__("소프트웨어융합/약학대학")
+        super().__init__("소프트웨어융합/약학")
         self.level = 1
         self.max_level = 1
         self.set_texture('images/buildings/sw.png')

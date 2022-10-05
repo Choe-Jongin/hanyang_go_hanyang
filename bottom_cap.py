@@ -14,8 +14,7 @@ class Bottomcap(Obj):
     def update(self, str, visible):
         self.visible = visible
         if str != '':
-            self.texture_cap.set_image(str,
-                Game.pos_sub(Game.pos_add(self.pos, self.margin_cap), self.center))
+            self.texture_cap.set_image(str, self.pos, self.center, self.margin_cap)
         else :
             self.visible = False
         

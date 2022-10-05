@@ -5,13 +5,13 @@ class Game :
     WHITE = (255,255,255)
     size = (1280,720)
     run = True
-    FPS = 60
+    FPS = 40
     images = []
     
     @staticmethod
     def init(game_name):
         Game.name = game_name;
-        Game.m = [0, 0]
+        Game.m = (0, 0)
         Game.mouse = 'none'
         
         #pygame settings
@@ -29,7 +29,10 @@ class Game :
         Game.m = m
     @staticmethod
     def mouse_clear():
-        Game.mouse = 'none'
+        if Game.mouse == 'down' :
+            Game.mouse = 'click'
+        else :
+            Game.mouse = 'none'
     def mouse_down():
         Game.mouse = 'down'
     @staticmethod

@@ -5,7 +5,7 @@ class Scene():
         self.name = name
         self.bgimage = Obj("background image")
         self.bgimage.set_texture(bgfilename)
-        self.bgimage.texture.set_scale(Game.size)
+        self.bgimage.texture.set_size(Game.size)
         
     def update(self):
         pass

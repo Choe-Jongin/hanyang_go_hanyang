@@ -5,7 +5,7 @@ class Texture():
     
     def __init__(self, filename='images/noimage.jpeg'):
         self.filename = filename
-        self.image = Texture.noimage
+        self.original_image = Texture.noimage
         try :
             self.original_image = pygame.image.load(filename)
         except :
@@ -16,12 +16,11 @@ class Texture():
         self.image = self.original_image
         self.x, self.y = 0, 0
             
-    def set_scale(self, scale):  
-        self.image = pygame.transform.scale(self.image, scale)
+    def set_size(self, size):  
+        self.image = pygame.transform.scale(self.original_image, size)
         
     def scale(self, s): 
-        self.image = pygame.transform.scale(self.original_image,
-                                            (self.original_size[0]*s[0], self.original_size[1]*s[1]))
+        self.set_size((self.original_size[0]*s[0], self.original_size[1]*s[1]))
         
 class Texture_font(Texture):
     def __init__(self, font, size, color, bold = False):

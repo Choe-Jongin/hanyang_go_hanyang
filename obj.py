@@ -1,12 +1,12 @@
 from game import *
-from button import Button
+from button import *
 
 class Obj():
     
     def __init__(self, name="No name"):
         self.name = name
-        self.pos    = (0, 0)
-        self.center = (0, 0)
+        self.pos    = [0, 0]
+        self.center = [0, 0]
         self.texture = Texture()
         
     def set_texture(self, filename):

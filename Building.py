@@ -5,16 +5,16 @@ class Building(Obj):
         super().__init__(name)
         self.level = 0
         self.max_level = 0
-        self.button = Button(A, B, C, D)
+        self.button = Rhombus_Button(A, B, C, D)
 
     def set_button(self, A, B, C, D):
-        self.button = Button(A, B, C, D)
+        self.button = Rhombus_Button(A, B, C, D)
 
     def update(self):
         pass
     
     def overroll(self):
-        return self.button.isClick(Game.m)
+        return self.button.mouse_in(Game.m)
     
-    def isClick(self):
-        return Game.mouse == 'click' and self.button.isClick(Game.m)
+    def isClicked(self):
+        return self.button.isClicked()

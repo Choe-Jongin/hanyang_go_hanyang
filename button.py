@@ -28,6 +28,10 @@ class Rect_Button(Button):
         self.A = [0, 0]
         self.B = size
         
+    def set_rect(self, A, B):
+        self.A = A
+        self.B = B
+    
     def mouse_in(self, m) :
         return (self.pos[0] + self.A[0] <= m[0] and
                 self.pos[1] + self.A[1] <= m[1] and 

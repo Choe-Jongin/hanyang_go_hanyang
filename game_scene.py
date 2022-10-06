@@ -1,6 +1,6 @@
-
 from bottom_cap import Bottomcap
-from buding_info import Building_info
+from topbar import *
+
 from building import *
 from Phydeu_building import Phydeu_Building
 from camhub_building import Camhub_Building
@@ -18,7 +18,6 @@ from techno_building import Techno_Building
 from welfare_building import Welfare_Building
 
 from scene import *
-from topbar import *
 
 class Game_Scene(Scene):
     
@@ -165,9 +164,14 @@ class Game_Scene(Scene):
                         Game.budget,
                         self.turn)
         
-        if self.student == 0 or Game.budget < 0 :
-            print('Fail')
+        if self.student < 100 or Game.budget <= 0 :
+            Game.end(1, self.satisfaction , self.research, self.evaluation, self.student)
+            return 3
         
+        if self.turn == 51 :
+            Game.end(0, self.satisfaction , self.research, self.evaluation, self.student)
+        
+        return 2
         
     def render(self):
         super().render()

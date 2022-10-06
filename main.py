@@ -1,8 +1,15 @@
-from  game_scene import *
+from intro_scene import *
+from title_scene import *
+from game_scene import *
+from ending_scene import *
 
 if __name__ == "__main__":
     Game.init("하냥아 학교가자")
-    scene = Game_Scene()
+    
+    scene_index = 0
+    next_scene = 1
+    scene_list = [Intro_Scene(), Title_Scene(), Game_Scene(), Ending_Scene()]
+    
     while Game.run:
         
         # Game.mouse_clear()
@@ -25,8 +32,15 @@ if __name__ == "__main__":
                 Game.mouse_up()
         
         # Game.screen.fill(Game.WHITE)
-        scene.update()
-        scene.render()
+        next_scene = scene_list[scene_index].update()
+        scene_list[scene_index].render()
+        
+        #scene 교체
+        if next_scene != scene_index:
+            #TODO : Loading progress 
+            if next_scene == 1 :
+                Game.bgm.play(-1)
+            scene_index = next_scene
                 
         for texture in Game.images:
             Game.screen.blit(texture.image, (texture.x, texture.y))

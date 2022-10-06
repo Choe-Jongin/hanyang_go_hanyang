@@ -7,6 +7,7 @@ class Game :
     run = True
     FPS = 40
     images = []
+    ending_value = []
     
     @staticmethod
     def init(game_name):
@@ -25,13 +26,15 @@ class Game :
         Game.screen = pygame.display.set_mode(Game.size)
         Game.clock = pygame.time.Clock()
         Game.bgm = pygame.mixer.Sound('sound/bgm.mp3')
-        Game.bgm.play(-1)
         Game.error = pygame.mixer.Sound('sound/error.mp3')
     
     @staticmethod
     def render(texture):
         Game.images.append(texture)
         
+    @staticmethod
+    def end(state, satisfaction = 0, research = 0, evaluation = 0, student = 0):
+        Game.ending_value = [state, satisfaction, research, evaluation, student] 
         
     @staticmethod
     def mouse_motion(m):

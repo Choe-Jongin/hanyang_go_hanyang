@@ -15,12 +15,18 @@ class Texture():
         self.original_size = self.original_image.get_size()
         self.image = self.original_image
         self.x, self.y = 0, 0
+        self.a = 0
             
     def set_size(self, size):  
         self.image = pygame.transform.scale(self.original_image, size)
         
     def scale(self, s): 
         self.set_size((self.original_size[0]*s[0], self.original_size[1]*s[1]))
+        
+    def set_alpha(self, alpha = None):
+        if alpha != None :
+            self.a = alpha
+        self.image.set_alpha((self.a/100)*255)
         
 class Texture_font(Texture):
     def __init__(self, font, size, color, bold = False):
